@@ -3,7 +3,7 @@
     use MongoDB\Model\BSONArray;
     use MongoDB\Operation\Find;
 
-    // error_reporting(0);
+    error_reporting(0);
     session_start();
     require '../vendor/autoload.php';
     if($_SESSION['email'] == '') {
@@ -12,8 +12,28 @@
     $con = new MongoDB\Client( 'mongodb://localhost:27017' );
     $db = $con->php_mongo;
     $collection = $db->manager;
-    $add_msg = '';
-    $_GET['q'] = '';
+    $msg = '';
+    // $_GET['time'] = '';
+
+    if($_GET['time'] == 'equal') {
+        $msg = '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>The selected time meeting has been already scheduled!</strong> Please pick up another time scheduled.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>';
+    }
+    else if($_GET['time'] == 'add' || $_GET['time'] == 'add') {
+        $msg = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Your meeting scheduled has been saved !</strong> 
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>';
+    } 
+    else if($_GET['date'] == 'add') {
+        $msg = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Your meeting scheduled has been saved !</strong> 
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>';
+    } 
+
 
     $record = $collection->findOne( [ 'email' =>$_SESSION['email']] );
     $datetime = iterator_to_array( $record['datetime'] );
@@ -64,8 +84,7 @@
         </div>
     </nav>
 
-    <?php echo $add_msg;
-?>
+    <?php echo $msg; ?>
 
     <!-- slider -->
     <div class='actions container my-5 '>
@@ -92,12 +111,13 @@ data-bs-target = '#edit_meeting'>Edit Meeting</button> -->
                         else {
                             $next_date_index = $k++;
                             $d = date( 'Y-m-d' );
-                            $nd = ++$d;
-                            // foreach($date_arr as $key) {
-                            // }
+                            $nd = ++$d; $c = 1;
                             foreach ( $time_arr as $key=>$val ) {
+                                // echo $key;
+                                $d = strval($key);
                                 $c_date = count($time_arr[$key]);
-                                echo '<a class="nav-item-date px-5" href="#">';
+                                echo '<button class="btn btn-dates px-5" id="param_btn" onclick="display('.$c.')">
+                                        <input type="date" id="param_date'.$c.'" hidden value='.$d.'>';
                                 if ( $key == date( 'Y-m-d' )  ) {
                                     echo '<h5 class="text-center text-nowrap">Today</h5>';
                                     echo '<small class="text-center text-nowrap">'. $c_date .' Slots Available</small>';
@@ -110,7 +130,8 @@ data-bs-target = '#edit_meeting'>Edit Meeting</button> -->
                                     echo '<h5 class="text-center text-nowrap">'. $day .'</h5>';
                                     echo '<small class="text-center text-nowrap">'. $c_date .' Slots Available</small>';
                                 }
-                                echo '</a>';
+                                echo '</button>';
+                                $c++;
                             }
                         }
                     ?>
@@ -123,13 +144,12 @@ data-bs-target = '#edit_meeting'>Edit Meeting</button> -->
             </div>
             <hr class='mb-0 text-primary'>
             <div class='detail-main d-flex justify-content-start'>
-                <div class='detail'>
+                <div class='detail' id="details">
                     <?php
                         $t = date( 'H' );
                         $timezone = date( 'e' );
                         $w = count($time_arr); $count = 0;
 
-                        function display($date){
                             echo "<div class='morning my-5 d-flex'>
                                     <i class='bi bi-brightness-alt-high text-secondary my-auto'></i>
                                     <p class='text-secondary my-auto px-3'>Morning</p>
@@ -175,7 +195,6 @@ data-bs-target = '#edit_meeting'>Edit Meeting</button> -->
                         echo "</div>
                             </div>";
 
-                        }
                         
 
                     ?>
@@ -187,7 +206,7 @@ data-bs-target = '#edit_meeting'>Edit Meeting</button> -->
     <!-- add meeting -->
     <div class='modal fade' id='add_meeting' tabindex='-1' data-bs-backdrop='static' aria-labelledby='exampleModalLabel'
         aria-hidden='true'>
-        <div class='modal-dialog modal-dialog-centered '>
+        <div class='modal-dialog  '>
             <div class='modal-content'>
                 <div class='modal-header'>
                     <h5 class='modal-title' id='exampleModalLabel'>Add Meeting Details</h5>
@@ -221,9 +240,31 @@ data-bs-target = '#edit_meeting'>Edit Meeting</button> -->
     <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
     <script src='../controller/js/manager.js'></script>
     <script>
-        $(document).on('change', '#meet_date', function() {
-            console.log($(this).val());
-        });
+
+        var date, next_date;
+
+        function display(ind) {
+            date = $(`#param_date${ind}`).val();
+            console.log(date);
+
+            let other_data = true;
+            var xhr = new XMLHttpRequest();
+
+            var url = '../controller/php/add_m.php';
+
+            xhr.open("POST", url, true);
+
+            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            
+            xhr.onreadystatechange = function() {
+                if(this.readyState == 4 && this.status == 200) {
+                    $('#details').html(xhr.responseText);
+                }
+            };
+
+            xhr.send(`next_date=${next_date}&date=${date}`);
+
+        }
     </script>
 
 </body>
