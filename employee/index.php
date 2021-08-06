@@ -125,7 +125,7 @@ error_reporting(0);
                             foreach ( $time_arr as $key=>$val ) {
                                 $d = strval($key);
                                 $c_date = count($time_arr[$key]);
-                                echo '<button class="btn btn-dates px-5" id="param_btn" onclick="display('.$c.')">
+                                echo '<button class="btn btn-dates px-5" id="param_btn'.$c.'" onclick="display('.$c.')">
                                         <input type="date" id="param_date'.$c.'" hidden value='.$d.'>';
                                 
                                 if ( $key == date( 'Y-m-d' )  ) {

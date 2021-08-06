@@ -116,7 +116,7 @@ data-bs-target = '#edit_meeting'>Edit Meeting</button> -->
                                 // echo $key;
                                 $d = strval($key);
                                 $c_date = count($time_arr[$key]);
-                                echo '<button class="btn btn-dates px-5" id="param_btn" onclick="display('.$c.')">
+                                echo '<button class="btn btn-dates px-5" id="param_btn'.$c.'" onclick="display('.$c.')">
                                         <input type="date" id="param_date'.$c.'" hidden value='.$d.'>';
                                 if ( $key == date( 'Y-m-d' )  ) {
                                     echo '<h5 class="text-center text-nowrap">Today</h5>';
@@ -245,7 +245,6 @@ data-bs-target = '#edit_meeting'>Edit Meeting</button> -->
 
         function display(ind) {
             date = $(`#param_date${ind}`).val();
-            console.log(date);
 
             let other_data = true;
             var xhr = new XMLHttpRequest();

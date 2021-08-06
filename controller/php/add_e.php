@@ -31,7 +31,7 @@ require '../../vendor/autoload.php';
 
         
         if($isTimeSame == false) {
-            // $collection = $db->employee;
+            $collection = $db->employee;
             // $record = $collection->find();
             // $datetime = iterator_to_array( $record['datetime'] );
 

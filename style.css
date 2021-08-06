@@ -15,6 +15,11 @@ body .navbar {
     height: 70px !important;
 }
 
+.active {
+    color: rgb(0, 131, 253) !important; 
+    border-bottom: 3px solid rgb(0, 131, 253);
+}
+
 
 .navbar .nav-btn-modal {
     background: none !important;

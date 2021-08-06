@@ -38,7 +38,7 @@
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-primary bg-primary ">
         <div class="container-fluid">
-            <a class="navbar-brand text-light" href="./index.php">Scheduld Meetings</a>
+            <a class="navbar-brand text-light" href="./index.php">Scheduled Meetings</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -60,7 +60,7 @@
     <!-- main div -->
     <div class="container main my-5">
         <div class="container my-5">
-            <h1 class="text-center">Scheduld Your Meeting Times </h1>
+            <h1 class="text-center">Scheduled Your Meeting Times </h1>
         </div>
 
         <div class="container d-flex justify-content-center my-5">
