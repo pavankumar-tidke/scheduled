@@ -13,7 +13,7 @@ if(isset($_POST['manager_signup'])) {
 
     $collection->insertOne( ['email' =>$_POST['email'], 'password' =>$hash] );
     
-    header('location: ../../index.php?s=login=now');
+    header('location: ../../index.php?login=now');
     // echo 'Account created success';
 
 }
@@ -26,7 +26,7 @@ else if(isset($_POST['employee_signup'])) {
 
     $collection->insertOne( ['empid' =>$_POST['empid'], 'email' =>$_POST['email'], 'password' =>$hash, 'datetime'=> $datetime] );
     
-    header('location: ../../index.php?s=login=now');
+    header('location: ../../index.php?login=now');
     // echo 'Account created success';
 
 }
