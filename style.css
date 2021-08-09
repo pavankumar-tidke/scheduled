@@ -1,19 +1,4 @@
-body .btn-close, .btn, .form-control {
-    outline: none !important;
-    box-shadow: none !important;
-}
-body {
-    -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-     -khtml-user-select: none; /* Konqueror HTML */
-       -moz-user-select: none; /* Old versions of Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently*/
-}
-body .navbar {
-    color: white !important;
-    height: 70px !important;
-}
+
 
 .active {
     color: rgb(0, 131, 253) !important; 
@@ -36,50 +21,5 @@ body .navbar {
     max-width: 350px !important;
 }
 
-
-
-
-/* slider */
-
-
-
-
-
-
-
-
-.slider-main i {
-    box-shadow: 1px 1px 6px rgb(158, 158, 158) !important;
-    height: 40px !important;
-    width: 40px !important;
-    border-radius: 100px;
-    font-size: 25px !important;
-}
-.slider {
-    max-width: 800px !important;
-    line-height: 20px;
-    overflow-x: auto;
-}
-.slider::-webkit-scrollbar {
-    width: 0 !important;
-}
-.slider .active {
-    color: rgb(0, 131, 253) !important; 
-    border-bottom: 3px solid rgb(0, 131, 253);
-}
-.slider a {
-    color: rgb(97, 97, 97);
-    text-decoration: none;
-    cursor: pointer;
-}
-.slider h5 {
-    font-size: 18px !important;
-}
-.slider small {
-    color: rgb(0, 209, 10);
-    font-size: small;
-    font-weight: 500;
-    text-decoration: none;
-}
 
 

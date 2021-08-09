@@ -68,39 +68,33 @@
 <body>
 
     <!-- navbar -->
-    <nav class='navbar navbar-expand-lg navbar-primary bg-primary '>
-        <div class='container-fluid'>
-            <a class='navbar-brand text-light' href='../index.php'>Scheduld Meetings</a>
+    <nav class='navbar navbar-expand-lg  px-5'>
+        <div class='container-fluid px-5'>
+            <a class='navbar-brand fw-bold text-dark fs-3 font-monospace' href='../index.php'>Manager Dashboard</a>
             <button class='navbar-toggler' type='button' data-bs-toggle='collapse'
                 data-bs-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false'
                 aria-label='Toggle navigation'>
                 <span class='navbar-toggler-icon'></span>
             </button>
-            <div class='collapse navbar-collapse d-flex justify-content-center' id='navbarSupportedContent'>
-            </div>
-            <form action='../controller/php/logout.php' method='POST'>
-                <button type='submit' name='logout' class='btn btn-danger text-light px-4 mx-5'>Log Out</button>
+            <div class='collapse navbar-collapse d-flex flex-row-reverse' id='navbarSupportedContent'>
+           
+            <form action='../controller/php/logout.php' method='POST' >
+                <button type='submit' name='logout' class='btn btn-outline-danger px-4 mx-5'>Log Out</button>
             </form>
+
+             <button class='btn btn-outline-primary py-2' type='button' data-bs-toggle='modal'
+                data-bs-target='#add_meeting'>schedueld Meeting</button>
+            
+            </div>
         </div>
     </nav>
 
     <?php echo $msg; ?>
 
-    <!-- slider -->
-    <div class='actions container my-5 '>
-        <div class='d-flex gap-2 justify-content-start'>
-            <button class='btn btn-primary px-5 py-2' type='button' data-bs-toggle='modal'
-                data-bs-target='#add_meeting'>Add Meeting schedueld</button>
-            <!-- <button class = 'btn btn-primary px-5 py-2' type = 'button' data-bs-toggle = 'modal'
-data-bs-target = '#edit_meeting'>Edit Meeting</button> -->
-            <!-- <button class = 'btn btn-danger px-5 py-2' type = 'button'>Delete Meetings</button> -->
-        </div>
-    </div>
-    <hr class=' mx-5 my-5 '>
-    <div class='container d-flex justify-content-center'>
+    <div class='container d-flex justify-content-center shadow w-50 py-5 mt-5 bg-light'>
         <div class='slider-container'>
             <div class='slider-main d-flex justify-content-center'>
-                <i class='bi bi-chevron-left text-primary text-center my-auto rounder-circle'></i>
+                <i class='bi bi-chevron-left text-center my-auto rounder-circle'></i>
                 <div class='slider d-flex'>
                     <?php
                         
@@ -120,29 +114,26 @@ data-bs-target = '#edit_meeting'>Edit Meeting</button> -->
                                         <input type="date" id="param_date'.$c.'" hidden value='.$d.'>';
                                 if ( $key == date( 'Y-m-d' )  ) {
                                     echo '<h5 class="text-center text-nowrap">Today</h5>';
-                                    echo '<small class="text-center text-nowrap">'. $c_date .' Slots Available</small>';
+                                    echo '<small class="text-center text-sucess text-nowrap">'. $c_date .' Slots schedule</small>';
                                 } else if ( $key == $nd ) {
                                     echo '<h5 class="text-center text-nowrap">Tomorrow</h5>';
-                                    echo '<small class="text-center text-nowrap">'. $c_date    .' Slots Available</small>';
+                                    echo '<small class="text-center text-sucess">'. $c_date    .' Slots schedule</small>';
                                 } else {
                                     $timestamp = strtotime( $key );
                                     $day = date( 'D, d M', $timestamp );
                                     echo '<h5 class="text-center text-nowrap">'. $day .'</h5>';
-                                    echo '<small class="text-center text-nowrap">'. $c_date .' Slots Available</small>';
+                                    echo '<small class="text-center  text-sucess text-nowrap">'. $c_date .' Slots schedule</small>';
                                 }
                                 echo '</button>';
                                 $c++;
                             }
                         }
                     ?>
-                                            <!-- <a class = 'px-5'>
-                        <h5 class = 'text-center text-nowrap'>Wed, 03 Aug</h5>
-                        <small class = 'text-center text-nowrap'>8 Slots Available</small>
-                        </a> -->
+                       
                 </div>
-                <i class='bi bi-chevron-right text-primary text-center my-auto rounder-circle'></i>
+                <i class='bi bi-chevron-right  text-center my-auto'></i>
             </div>
-            <hr class='mb-0 text-primary'>
+           
             <div class='detail-main d-flex justify-content-start'>
                 <div class='detail' id="details">
                     <?php
@@ -151,13 +142,13 @@ data-bs-target = '#edit_meeting'>Edit Meeting</button> -->
                         $w = count($time_arr); $count = 0;
 
                             echo "<div class='morning my-5 d-flex'>
-                                    <i class='bi bi-brightness-alt-high text-secondary my-auto'></i>
-                                    <p class='text-secondary my-auto px-3'>Morning</p>
+                                    <i class='bi bi-brightness-alt-high-fill  my-auto'></i>
+                                    <p class=' my-auto px-3'>Morning </p>
                                     <div class='d-flex justify-content-start'>";
                             foreach ( $time_arr as $key ) {
                                     foreach ( $key as $k=>$v ) {
                                         if ( $key[$k] < '12:00' ) {
-                                            echo "<button class='btn btn-sm btn-primary-outline border border-primary text-primary mx-3'>". $key[$k] ."</button>";
+                                            echo "<button class='btn btn-sm btn-outline-success text-sucess fw-bold mx-3'>". $key[$k] ."</button>";
                                         }
                                     }
                                 break;
@@ -166,13 +157,13 @@ data-bs-target = '#edit_meeting'>Edit Meeting</button> -->
                                 </div>";
                             
                                 echo "<div class='afternoon my-5 d-flex'>
-                                    <i class='bi bi-brightness-high text-secondary my-auto'></i>
-                                    <p class='text-secondary my-auto px-3'>Afternoon</p>
+                                    <i class='bi bi-brightness-high-fill  my-auto'></i>
+                                    <p class=' my-auto px-3'>Afternoon</p>
                                     <div class='d-flex justify-content-start'>";
                             foreach ( $time_arr as $key ) {
                                     foreach ( $key as $k=>$v ) {
                                         if ( $key[$k] >= '12:00' && $key[$k] < '17:00' ) {
-                                            echo "<button class='btn btn-sm btn-primary-outline border border-primary text-primary mx-3'>". $key[$k] ."</button>";
+                                            echo "<button class='btn btn-sm btn-outline-success text-sucess fw-bold mx-3'>". $key[$k] ."</button>";
                                         }
                                     }
                                 break;
@@ -181,13 +172,13 @@ data-bs-target = '#edit_meeting'>Edit Meeting</button> -->
                                 </div>";
     
                                 echo "<div class='evening my-5 d-flex'>
-                                <i class='bi bi-moon text-secondary my-auto'></i>
-                                <p class='text-secondary my-auto px-3'>Evening</p>
+                                <i class='bi bi-moon-fill  my-auto'></i>
+                                <p class=' my-auto px-3'>Evening</p>
                                 <div class='d-flex justify-content-start'>";
                         foreach ( $time_arr as $key ) {
                                 foreach ( $key as $k=>$v ) {
                                     if ( $key[$k] >= '17:00') {
-                                        echo "<button class='btn btn-sm btn-primary-outline border border-primary text-primary mx-3'>". $key[$k] ."</button>";
+                                        echo "<button class='btn btn-sm btn-outline-success text-sucess fw-bold mx-3'>". $key[$k] ."</button>";
                                     }
                                 }
                             break;

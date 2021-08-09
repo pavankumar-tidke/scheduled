@@ -21,11 +21,6 @@
 
 ?>
 
-
-
-
-
-
 <!doctype html>
 <html lang="en">
 
@@ -39,53 +34,29 @@
     <title>Scheduld yourself !</title>
 </head>
 
-<body>
-
-    <!-- navbar -->
-    <nav class="navbar navbar-expand-lg navbar-primary bg-primary ">
-        <div class="container-fluid">
-            <a class="navbar-brand text-light" href="./index.php">Scheduled Meetings</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse d-flex justify-content-center" id="navbarSupportedContent">
-                <!-- <button type="button" class="nav-btn-modal btn text-light mx-5" data-bs-toggle="modal"
-                    data-bs-target="#signup">Employee Sign Up</button>
-                <button type="button" class="nav-btn-modal btn text-light mx-5" data-bs-toggle="modal"
-                    data-bs-target="#login">Employee Log In</button> -->
-            </div>
-
-        </div>
-    </nav>
+<body >
 
     <?php echo $auth_msg; ?>
 
 
-    <!-- main div -->
-    <div class="container main my-5">
-        <div class="container my-5">
-            <h1 class="text-center">Scheduled Your Meeting Times </h1>
-        </div>
+        <div class="container d-flex justify-content-center align-middle text-center flex-column" style="margin-top: 65px;">
+                <h1 class="text-center text-uppercase fw-bold font-monospace">Dashboard</h1>
 
-        <div class="container d-flex justify-content-center my-5">
-            <!-- <button type="button" class="btn btn-primary text-light px-5 py-2 mx-5" data-bs-toggle="modal"
-                data-bs-target="#manager_signup">Manager Sign Up</button> -->
-            <button type="button" class="btn btn-primary text-light px-5 py-2 mx-5" data-bs-toggle="modal"
-                data-bs-target="#manager_login">Manager</button>
-        </div>
-        <div class="container d-flex justify-content-center my-5">
-            <button type="button" class="btn btn-primary text-light px-5 py-2 mx-5" data-bs-toggle="modal"
-                data-bs-target="#employee_signup">Employee Sign Up</button>
-            <button type="button" class="btn btn-primary text-light px-5 py-2 mx-5" data-bs-toggle="modal"
-                data-bs-target="#employee_login">Employee Log In</button>
-        </div>
-    </div>
+                <div class="d-flex justify-content-center mt-5">
+                <div class="border shadow manager bg-light w-25 pb-4 rounded-3" style="margin-right: 25px;">
+                        <p class="bg-primary text-center p-2 text-light rounded-top fw-bold">Manager</p>
+                        <button type="button" class="btn btn-outline-primary px-3" data-bs-toggle="modal" data-bs-target="#manager_signup">Sign Up</button><br>
+                        <button type="button" class="btn btn-outline-primary mt-3 px-4" data-bs-toggle="modal" data-bs-target="#manager_login">Login</button>
+                  </div>
 
-
-
-
+                  <div class="border shadow manager w-25 bg-light pb-4 rounded-3">
+                        <p class="bg-primary text-center p-2 text-light rounded-top fw-bold">Employee</p>
+                        <button type="button" class="btn btn-outline-primary px-3" data-bs-toggle="modal" data-bs-target="#employee_signup">Sign Up</button><br>
+                        <button type="button" class="btn btn-outline-primary mt-3 px-4" data-bs-toggle="modal" data-bs-target="#employee_login">Login</button>
+                  </div>
+                </div>
+                </div>
+ 
     <!-- modals -->
 
     <!-- sign up Modal -->
@@ -100,7 +71,7 @@
                 <div class="modal-body container">
                     <form class="container" action="./controller/php/signup.php" method="POST">
                         <div class="mb-3">
-                            <label for="number" class="form-label">Employee ID</label>
+                            <label for="number" class="form-label ">Employee ID</label>
                             <input type="number" name="empid" class="form-control" id="empsid" aria-describedby="empid">
                             <small class="small" id="empsid_small"></small>
                         </div>
